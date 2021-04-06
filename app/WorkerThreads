@@ -1,0 +1,23 @@
+<?php
+/**
+ * Author: Abu Ashraf Masnun
+ * URL: http://masnun.me
+ */
+namespace App;
+class WorkerThreads extends Thread
+{
+    private $workerId;
+
+    public function __construct($id)
+    {
+        $this->workerId = $id;
+    }
+
+    public function run()
+    {
+        sleep(rand(0, 3));
+        echo "Worker {$this->workerId} ran" . PHP_EOL;
+    }
+}
+
+?>
