@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Askedio\Laravelcp\Models\User;
+use App\User;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;

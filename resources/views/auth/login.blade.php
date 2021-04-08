@@ -1,4 +1,5 @@
-@extends('layouts.master')
+{{--@extends('layouts.master')--}}
+@extends('layouts.public')
 
 @section('title') Login @endsection
 
@@ -13,15 +14,15 @@
             </div>
             <div class="panel-body">
                 <p class="text-center pv">SIGN IN TO CONTINUE.</p>
-                <form  action="{{ url('/auth/login') }}" role="form" data-parsley-validate="" novalidate="" class="mb-lg">
+                <form  action="{{ url('/auth/login') }}" method="POST" role="form" data-parsley-validate="" novalidate="" class="mb-lg">
                     {!! csrf_field() !!}
 
                     <div class="form-group has-feedback">
-                        <input id="exampleInputEmail1" type="email" placeholder="Enter email" autocomplete="off" required class="form-control">
+                        <input id="exampleInputEmail1" name="email" type="email" placeholder="Enter email" autocomplete="off" required class="form-control">
                         <span class="fa fa-envelope form-control-feedback text-muted"></span>
                     </div>
                     <div class="form-group has-feedback">
-                        <input id="exampleInputPassword1" type="password" placeholder="Password" required class="form-control">
+                        <input id="exampleInputPassword1" name="password" type="password" placeholder="Password" required class="form-control">
                         <span class="fa fa-lock form-control-feedback text-muted"></span>
                     </div>
                     <div class="clearfix">

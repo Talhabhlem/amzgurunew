@@ -11,22 +11,24 @@
                             <!-- User picture-->
                             <div class="user-block-picture">
                                 <div class="user-block-status">
-                                    <img src="{{url('/assets/images/profile.png')}}" alt="Avatar" width="60" height="60" class="img-thumbnail img-circle">
+                                    <img src="{{url('/assets/images/profile.png')}}" alt="Avatar" width="60" height="60"
+                                         class="img-thumbnail img-circle">
                                     <div class="circle circle-success circle-lg"></div>
                                 </div>
                             </div>
                             <!-- Name and Job-->
                             <div class="user-block-info">
-                                <span class="user-block-name">Hello, {{Auth::user()->name}}</span>
-                                <span class="user-block-role">{{Auth::user()->role}}</span>
+                                {{--<span class="user-block-name">Hello, {{Auth::user()->name}}</span>--}}
+{{--                                <span class="user-block-role">{{Auth::user()->role}}</span>--}}
                             </div>
                         </div>
                     </div>
                 </li>
                 <!-- END user info-->
-                <!-- Iterates over all sidebar items-->
-                @foreach (Nav::$nav->where('nav', 'main')->sortBy('sort') as $chunk => $c)
-                    <li class="@if($currentnav==$c['slug']) active @endif">
+            <!-- Iterates over all sidebar items-->
+                {{--                @foreach (Nav::$nav->where('nav', 'main')->sortBy('sort') as $chunk => $c)--}}
+                @foreach (\App\Helpers\TeHelper::side_nav() as $chunk => $c)
+                    <li class="@if(\App\Helpers\TeHelper::currentSlug() == $c['slug']) active @endif">
                         <a href="{!! $c['link']!!}" title="{{ $c['title']}}">
                             {{--<em class="@if($c['slug']== 'settings/email') {{'fa fa-envelope-o'}} @else {{'fa fa-money'}} @endif"></em>--}}
                             <em class="{{$c['icon']}}"></em>

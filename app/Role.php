@@ -1,16 +1,13 @@
 <?php
 
-namespace Askedio\Laravelcp\Models;
+namespace App;
 
-use Askedio\Laravelcp\Traits\Slugable;
 use Illuminate\Database\Eloquent\Model;
-use Askedio\Laravelcp\Traits\RoleHasRelations;
-use Askedio\Laravelcp\Contracts\RoleHasRelations as RoleHasRelationsContract;
+use Illuminate\Support\Facades\DB;
+use App\Helpers\TeHelper;
 
-class Role extends Model implements RoleHasRelationsContract
+class Role extends Model
 {
-    use Slugable, RoleHasRelations;
-
     /**
      * The attributes that are mass assignable.
      *

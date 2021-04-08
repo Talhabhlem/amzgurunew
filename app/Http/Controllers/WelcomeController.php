@@ -22,7 +22,7 @@ class WelcomeController extends Controller
     public function index()
     {
         $user = Auth::user();
-        if($user->is('admin'))
+        if($user->role == 'admin')
             return redirect('/admin/users');
         else
             return redirect('/analysis');

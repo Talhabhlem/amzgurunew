@@ -3,9 +3,11 @@
 namespace App\Helpers;
 
 use App\Sale;
-use Askedio\Laravelcp\Models\User;
-use Askedio\Laravelcp\Models\Role;
-use Askedio\Laravelcp\Models\Permission;
+
+//use Askedio\Laravelcp\Models\User;
+//use Askedio\Laravelcp\Models\Role;
+//use Askedio\Laravelcp\Models\Permission;
+use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 
 class TeHelper
@@ -15,6 +17,72 @@ class TeHelper
         $CI = &get_instance();
         $cuser = $CI->session->userdata('user');
         date_default_timezone_set($cuser['timezone']);
+    }
+
+    public static function side_nav()
+    {
+        $cuser = \Auth::user();
+        if ($cuser->role == 'admin') {
+            $users = array();
+            $users['title'] = 'Users';
+            $users['slug'] = 'admin/users';
+            $users['link'] = url('/admin/users');
+            $users['icon'] = 'fa fa-users';
+            $users['nav'] = 'main';
+            $sidebarMainNav = [
+                'users' => $users,
+            ];
+        }else {
+            $email_alert = array();
+            $email_alert['title'] = 'Email Alerts';
+            $email_alert['slug'] = 'settings/email';
+            $email_alert['link'] = url('settings/email');
+            $email_alert['icon'] = 'fa fa-bell';
+            $email_alert['nav'] = 'main';
+
+            $manage_event = array();
+            $manage_event['title'] = 'Manage Events';
+            $manage_event['slug'] = 'events';
+            $manage_event['link'] = url('events');
+            $manage_event['icon'] = 'fa fa-calendar';
+            $manage_event['nav'] = 'main';
+
+            $sale_analysis = array();
+            $sale_analysis['title'] = 'Sales Analysis';
+            $sale_analysis['slug'] = 'analysis';
+            $sale_analysis['link'] = url('analysis');
+            $sale_analysis['icon'] = 'fa fa-area-chart';
+            $sale_analysis['nav'] = 'main';
+
+            $sidebarMainNav = [
+                'email_alert' => $email_alert,
+                'manage_event' => $manage_event,
+                'sale_analysis' => $sale_analysis,
+            ];
+        }
+        return $sidebarMainNav;
+    }
+
+    public static function currentSlug()
+    {
+        $currentnav = \Illuminate\Support\Facades\Request::segment(TeHelper::te_segment('current_slug'));
+        return $currentnav;
+    }
+
+    public static function te_segment($index = '')
+    {
+        $segments = [
+            'current_slug' => 1,
+        ];
+
+        if (empty($index)) {
+            return $segments;
+        } else {
+            if (isset($segments[$index])) {
+                return $segments[$index];
+            }
+        }
+        return '';
     }
 
     public static function te_email($args = array())

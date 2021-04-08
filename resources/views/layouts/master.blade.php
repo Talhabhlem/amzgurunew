@@ -34,8 +34,9 @@
     @yield('styles')
 
     <script>
-        base_url = '{!! url() !!}/';
-        var thisTimeZone = 'America/Los_Angeles';
+        // console.log(url());
+{{--        base_url = '{!! url() !!}/';--}}
+        // var thisTimeZone = 'America/Los_Angeles';
     </script>
 
     @yield('head')
@@ -174,7 +175,10 @@
         <!-- /Footer -->
     </div>
 @show
-
+<script type="text/javascript">
+    var base_url = window.location.origin;
+    console.log(base_url);
+</script>
 <!-- =============== VENDOR SCRIPTS ===============-->
 <!-- MODERNIZR-->
 <script src="{{url('vendor/modernizr/modernizr.custom.js')}}"></script>

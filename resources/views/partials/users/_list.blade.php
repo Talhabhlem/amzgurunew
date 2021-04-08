@@ -67,45 +67,45 @@
                     {{ trans('ID') }}
                     <a href="?sort=id&order={{ session('l5cp-user-order') == 'desc' ? 'asc' : 'desc' }}"
                        class="disabled">
-                        <i class="fa fa-sort{{ session('l5cp-user-sort') == 'id' ? (Input::get('order', 'desc') == 'desc' ? '-alpha-asc' : '-alpha-desc') : '' }} pull-right"></i>
+                        {{--<i class="fa fa-sort{{ session('l5cp-user-sort') == 'id' ? (Input::get('order', 'desc') == 'desc' ? '-alpha-asc' : '-alpha-desc') : '' }} pull-right"></i>--}}
                     </a>
                 </th>
                 <th>
-                    {{ trans('lcp::default.name') }}
+                    {{ trans('name') }}
                     <a href="?sort=name&order={{ session('l5cp-user-order') == 'desc' ? 'asc' : 'desc' }}"
                        class="disabled">
-                        <i class="fa fa-sort{{ session('l5cp-user-sort') == 'name' ? (Input::get('order', 'desc') == 'desc' ? '-alpha-asc' : '-alpha-desc') : '' }} pull-right"></i>
+                        {{--<i class="fa fa-sort{{ session('l5cp-user-sort') == 'name' ? (Input::get('order', 'desc') == 'desc' ? '-alpha-asc' : '-alpha-desc') : '' }} pull-right"></i>--}}
                     </a>
                 </th>
                 <th class="hidden-xs">
-                    {{ trans('lcp::default.email') }}
+                    {{ trans('email') }}
                     <a href="?sort=email&order={{ session('l5cp-user-order') == 'desc' ? 'asc' : 'desc' }}"
                        class="disabled">
-                        <i class="fa fa-sort{{ session('l5cp-user-sort') == 'email' ? (Input::get('order', 'desc') == 'desc' ? '-alpha-asc' : '-alpha-desc') : '' }} pull-right"></i>
+                        {{--<i class="fa fa-sort{{ session('l5cp-user-sort') == 'email' ? (Input::get('order', 'desc') == 'desc' ? '-alpha-asc' : '-alpha-desc') : '' }} pull-right"></i>--}}
                     </a>
                 </th>
                 <th class="hidden-xs">
                     Status
                     <a href="?sort=status&order={{ session('l5cp-user-order') == 'desc' ? 'asc' : 'desc' }}"
                        class="disabled">
-                        <i class="fa fa-sort{{ session('l5cp-user-sort') == 'status' ? (Input::get('order', 'desc') == 'desc' ? '-alpha-asc' : '-alpha-desc') : '' }} pull-right"></i>
+                        {{--<i class="fa fa-sort{{ session('l5cp-user-sort') == 'status' ? (Input::get('order', 'desc') == 'desc' ? '-alpha-asc' : '-alpha-desc') : '' }} pull-right"></i>--}}
                     </a>
                 </th>
                 <th class="hidden-xs">
                     Last Updated
                     <a href="?sort=updated_at&order={{ session('l5cp-user-order') == 'desc' ? 'asc' : 'desc' }}"
                        class="disabled">
-                        <i class="fa fa-sort{{ session('l5cp-user-sort') == 'updated_at' ? (Input::get('order', 'desc') == 'desc' ? '-alpha-asc' : '-alpha-desc') : '' }} pull-right"></i>
+                        {{--<i class="fa fa-sort{{ session('l5cp-user-sort') == 'updated_at' ? (Input::get('order', 'desc') == 'desc' ? '-alpha-asc' : '-alpha-desc') : '' }} pull-right"></i>--}}
                     </a>
                 </th>
                 <th class="hidden-xs">
                     Created At
                     <a href="?sort=created_at&order={{ session('l5cp-user-order') == 'desc' ? 'asc' : 'desc' }}"
                        class="disabled">
-                        <i class="fa fa-sort{{ session('l5cp-user-sort') == 'created_at' ? (Input::get('order', 'desc') == 'desc' ? '-alpha-asc' : '-alpha-desc') : '' }} pull-right"></i>
+                        {{--<i class="fa fa-sort{{ session('l5cp-user-sort') == 'created_at' ? (Input::get('order', 'desc') == 'desc' ? '-alpha-asc' : '-alpha-desc') : '' }} pull-right"></i>--}}
                     </a>
                 </th>
-                <th class="col-md-2 col-sm-3 col-xs-5">{{ trans('lcp::default.control') }}</th>
+                <th class="col-md-2 col-sm-3 col-xs-5">{{ trans('control') }}</th>
             </tr>
             </thead>
             <tbody>

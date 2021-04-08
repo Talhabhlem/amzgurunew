@@ -188,6 +188,29 @@ Route::get('populate_sale_offset_table',function(){
 
 
 
-Auth::routes();
+//Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+
+# Log in/out routes
+Route::get('auth/login', 'Auth\AuthController@getLogin')->name('login');
+Route::post('auth/login', 'Auth\AuthController@login');
+Route::get('auth/logout', 'Auth\AuthController@getLogout');
+
+# Register routes
+Route::get('auth/register', 'Auth\AuthController@getRegister');
+Route::post('auth/register', 'Auth\AuthController@postRegister');
+
+//# Reset password routes
+//Route::controllers([
+//    'password' => 'app\Http\Controllers\Auth\PasswordController',
+//]);
+
+# Admin group
+//Route::group(['as' => 'dashboard', 'middleware' => 'role:admin',], function () {
+Route::group(['as' => 'dashboard',], function () {
+        Route::resource('admin/users', 'HomeController');
+        Route::resource('admin/roles', 'RolesController');
+        Route::resource('admin/permissions', 'PermsController');
+});

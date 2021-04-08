@@ -102,7 +102,7 @@ jQuery.fn.extend({
         }
         jQuery.ajax({
             type: "POST",
-            url: base_url+action,
+            url: base_url+"/"+action,
             data: serialized_data,
             dataType: 'json',
             cache: false ,
