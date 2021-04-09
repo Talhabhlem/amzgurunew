@@ -112,17 +112,17 @@ class SettingController extends Controller
         $email->package = explode(',',$email->package);
         return view('settings.email',compact('email','cuser'));
     }
-    public function ajax_save_amazon_settings()
+    public function ajax_save_amazon_settings(Request $request)
     {
         $user       = Auth::user();
         $settings   = $user->AmazonSettings()->get()->first();
         if($settings)
         {
-            $settings->update(Input::all());
+            $settings->update($request->all());
         }
         else
         {
-            $amazon_settings = $user->AmazonSettings()->create(Input::all());
+            $amazon_settings = $user->AmazonSettings()->create($request->all());
         }
         $response = array();
         $errors = array();
@@ -130,9 +130,9 @@ class SettingController extends Controller
         echo json_encode($response);
         exit;
     }
-    public function ajax_save_email_settings()
+    public function ajax_save_email_settings(Request $request)
     {
-        $data = Input::all();
+        $data = $request->all();
         $data['package'] = implode(',',$data['package']);
         $user = Auth::user();
         $user->EmailSettings()->delete();

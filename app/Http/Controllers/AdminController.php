@@ -61,7 +61,7 @@ class AdminController extends Controller
         ];
     }
 
-    public function ajax_upload_csv_users()
+    public function ajax_upload_csv_users(Request $request)
     {
         $cuser = \Auth::user();
         $user_id = $cuser->id;
@@ -192,18 +192,18 @@ class AdminController extends Controller
         if ( empty( $error )) {
             $response['status'] = 'success';
             $response['import_status'] = $status;
-            $users = User::
-            where('name', 'LIKE', '%'.session('l5cp-user-search').'%')
-                ->orWhere('email', 'LIKE', '%'.session('l5cp-user-search').'%')
-                ->orderBy(session('l5cp-user-sort'), session('l5cp-user-order'))
-                ->paginate(session('l5cp-user-limit'));
-            $response['view_table_html']=  (String) view('partials.users._list' , compact('users'));
+            $users = User::where('name', 'LIKE', '%'.$request->input('q', '').'%')
+                ->orWhere('id', '=', $request->input('q', ''))
+                ->orWhere('email', 'LIKE', '%'.$request->input('q', '').'%')
+                ->orderBy(session('l5cp-user-sort'), $request->input('order', 'desc'))
+                ->paginate($request->input('limit', 15));
+            $response['view_table_html']=  (String) view('partials.users._list' , compact('users','request'));
         }
         echo json_encode( $response );
         exit;
     }
 
-    public function ajax_edit_user()
+    public function ajax_edit_user(Request $request)
     {
         $action     = $_POST['user_action'];
         $userids    = $_POST['selected_users'];
@@ -240,12 +240,13 @@ class AdminController extends Controller
             $response['msg'] = "User(s) deleted successfully.";
         }
 
-        $users = User::where('name', 'LIKE', '%'.session('l5cp-user-search').'%')
-            ->orWhere('email', 'LIKE', '%'.session('l5cp-user-search').'%')
-            ->orderBy(session('l5cp-user-sort'), session('l5cp-user-order'))
-            ->paginate(session('l5cp-user-limit'));
+        $users = User::where('name', 'LIKE', '%'.$request->input('q', '').'%')
+            ->orWhere('id', '=', $request->input('q', ''))
+            ->orWhere('email', 'LIKE', '%'.$request->input('q', '').'%')
+            ->orderBy(session('l5cp-user-sort'), $request->input('order', 'desc'))
+            ->paginate($request->input('limit', 15));
 
-        $response['view_table_html']=  (String) view('partials.users._list' , compact('users'));
+        $response['view_table_html']=  (String) view('partials.users._list' , compact('users','request'));
 
         echo json_encode($response);
 

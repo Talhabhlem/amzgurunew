@@ -37,7 +37,7 @@ function te_ajax(action, serialized_data, success_func, fail_func) {
 
     lastrequest = jQuery.ajax({
         type: "POST",
-        url: base_url+action,
+        url: base_url+"/"+action,
         data: serialized_data,
         dataType: 'json',
         cache: false ,
@@ -385,7 +385,7 @@ jQuery.fn.extend({
             jQuery.ajax({
                 headers: { 'X-CSRF-TOKEN' : jQuery('meta[name="_token"]').attr('content') },
                 type: "POST",
-                url: base_url+action,
+                url: base_url+"/"+action,
                 data: querystring,
                 cache: false,
                 success: function(response){
@@ -445,7 +445,7 @@ jQuery.fn.extend({
             jQuery.ajax({
                 headers: { 'X-CSRF-TOKEN' : jQuery('meta[name="_token"]').attr('content') },
                 type: "POST",
-                url: base_url+action,
+                url: base_url+"/"+action,
                 data: querystring,
                 cache: false,
                 success: function(response){

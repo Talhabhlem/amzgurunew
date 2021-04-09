@@ -100,7 +100,7 @@
             jQuery("#sku").select2({
                 ajax: {
                     headers: { 'X-CSRF-TOKEN' : jQuery('meta[name="_token"]').attr('content') },
-                    url: base_url+"events/ajax_product_name_search",
+                    url: base_url+"/events/ajax_product_name_search",
                     dataType: 'json',
                     type: "POST",
                     delay: 250,

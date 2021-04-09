@@ -29,25 +29,27 @@ class HomeController extends Controller
 //    }
     public function index(Request $request)
     {
-        if($request->input('limit') || !session()->has('l5cp-user-limit'))
-            session(['l5cp-user-limit' => $request->input('limit', 15)]);
+        $search = array();
+//        if($request->input('limit') || !session()->has('l5cp-user-limit'))
+//            session(['l5cp-user-limit' => $request->input('limit', 15)]);
+//
+//        if(null !== $request->input('q') || !session()->has('l5cp-user-search'))
+//            session(['l5cp-user-search' => $request->input('q', '')]);
+//
+//
+//        if(null !== $request->input('sort') || !session()->has('l5cp-user-sort'))
+//            session(['l5cp-user-sort' => $request->input('sort', 'name')]);
+//
+//        if(null !== $request->input('order') || !session()->has('l5cp-user-order'))
+//            session(['l5cp-user-order' => $request->input('order', 'desc')]);
 
-        if(null !== $request->input('q') || !session()->has('l5cp-user-search'))
-            session(['l5cp-user-search' => $request->input('q', '')]);
+        $users = User::where('name', 'LIKE', '%'.$request->input('q', '').'%')
+            ->orWhere('id', '=', $request->input('q', ''))
+            ->orWhere('email', 'LIKE', '%'.$request->input('q', '').'%')
+            ->orderBy(session('l5cp-user-sort'), $request->input('order', 'desc'))
+            ->paginate($request->input('limit', 15));
 
-
-        if(null !== $request->input('sort') || !session()->has('l5cp-user-sort'))
-            session(['l5cp-user-sort' => $request->input('sort', 'name')]);
-
-        if(null !== $request->input('order') || !session()->has('l5cp-user-order'))
-            session(['l5cp-user-order' => $request->input('order', 'desc')]);
-
-        $users = User::where('name', 'LIKE', '%'.session('l5cp-user-search').'%')
-            ->orWhere('id', '=', session('l5cp-user-search'))
-            ->orWhere('email', 'LIKE', '%'.session('l5cp-user-search').'%')
-            ->orderBy(session('l5cp-user-sort'), session('l5cp-user-order'))
-            ->paginate(session('l5cp-user-limit'));
-        return view('user.index')->withRoles(Role::all())->withUsers($users);
+        return view('user.index',compact('request',$request))->withRoles(Role::all())->withUsers($users);
     }
     public function create(Request $request)
     {
@@ -97,24 +99,25 @@ class HomeController extends Controller
 
     public function show(Request $request)
     {
-        if($request->input('limit') || !session()->has('l5cp-user-limit'))
-            session(['l5cp-user-limit' => $request->input('limit', 15)]);
+//        if($request->input('limit') || !session()->has('l5cp-user-limit'))
+//            session(['l5cp-user-limit' => $request->input('limit', 15)]);
+//
+//        if(null !== $request->input('q') || !session()->has('l5cp-user-search'))
+//            session(['l5cp-user-search' => $request->input('q', '')]);
+//
+//
+//        if(null !== $request->input('sort') || !session()->has('l5cp-user-sort'))
+//            session(['l5cp-user-sort' => $request->input('sort', 'name')]);
+//
+//        if(null !== $request->input('order') || !session()->has('l5cp-user-order'))
+//            session(['l5cp-user-order' => $request->input('order', 'desc')]);
 
-        if(null !== $request->input('q') || !session()->has('l5cp-user-search'))
-            session(['l5cp-user-search' => $request->input('q', '')]);
+        $users = User::where('name', 'LIKE', '%'.$request->input('q', '').'%')
+            ->orWhere('id', '=', $request->input('q', ''))
+            ->orWhere('email', 'LIKE', '%'.$request->input('q', '').'%')
+            ->orderBy(session('l5cp-user-sort'), $request->input('order', 'desc'))
+            ->paginate($request->input('limit', 15));
 
-
-        if(null !== $request->input('sort') || !session()->has('l5cp-user-sort'))
-            session(['l5cp-user-sort' => $request->input('sort', 'name')]);
-
-        if(null !== $request->input('order') || !session()->has('l5cp-user-order'))
-            session(['l5cp-user-order' => $request->input('order', 'desc')]);
-
-        $users = User::where('name', 'LIKE', '%'.session('l5cp-user-search').'%')
-            ->orWhere('id', '=', session('l5cp-user-search'))
-            ->orWhere('email', 'LIKE', '%'.session('l5cp-user-search').'%')
-            ->orderBy(session('l5cp-user-sort'), session('l5cp-user-order'))
-            ->paginate(session('l5cp-user-limit'));
-        return view('user.index')->withRoles(Role::all())->withUsers($users);
+        return view('user.index',compact('request',$request))->withRoles(Role::all())->withUsers($users);
     }
 }

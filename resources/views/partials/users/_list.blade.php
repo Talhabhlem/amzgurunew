@@ -29,7 +29,7 @@
             <div class="form-group">
                 <div class="input-group">
                     <input type="number" class="form-control" name="limit"
-                           value="{{ session('l5cp-user-limit') }}">
+                           value="{{ @$request->limit ? @$request->limit :15}}">
 
                     <div class="input-group-btn">
                         <button type="submit" class="btn btn-default">Limit</button>
@@ -44,7 +44,7 @@
                 <div class="input-group">
                     <div class="input-group-addon"><i class="fa fa-search"></i></div>
                     <input name="q" type="search" class="form-control" placeholder="Search"
-                           value="{{ session('l5cp-user-search') }}">
+                           value="{{ @$request->q }}">
                 </div>
         </form>
     </div>
@@ -53,7 +53,7 @@
 </div>
 <div class="row">
     <div class="col-md-12">
-        
+
 <!-- Striped rows table with hovers -->
 <div class="table-responsive dataTables_wrapper">
     <form action="admin/ajax_edit_user" id="actions_user_form" class="te-ajax-form">
@@ -65,44 +65,44 @@
                 </th>
                 <th>
                     {{ trans('ID') }}
-                    <a href="?sort=id&order={{ session('l5cp-user-order') == 'desc' ? 'asc' : 'desc' }}"
+                    <a href="?sort=id&order={{ @$request->order == 'desc' ? 'asc' : 'desc' }}"
                        class="disabled">
-                        {{--<i class="fa fa-sort{{ session('l5cp-user-sort') == 'id' ? (Input::get('order', 'desc') == 'desc' ? '-alpha-asc' : '-alpha-desc') : '' }} pull-right"></i>--}}
+                        <i class="fa fa-sort{{ @$request->sort == 'id' ? (@$request->order == 'desc' ? '-alpha-asc' : '-alpha-desc') : '' }} pull-right"></i>
                     </a>
                 </th>
                 <th>
                     {{ trans('name') }}
-                    <a href="?sort=name&order={{ session('l5cp-user-order') == 'desc' ? 'asc' : 'desc' }}"
+                    <a href="?sort=name&order={{ @$request->order == 'desc' ? 'asc' : 'desc' }}"
                        class="disabled">
-                        {{--<i class="fa fa-sort{{ session('l5cp-user-sort') == 'name' ? (Input::get('order', 'desc') == 'desc' ? '-alpha-asc' : '-alpha-desc') : '' }} pull-right"></i>--}}
+                        <i class="fa fa-sort{{ @$request->sort == 'name' ? (@$request->order == 'desc' ? '-alpha-asc' : '-alpha-desc') : '' }} pull-right"></i>
                     </a>
                 </th>
                 <th class="hidden-xs">
                     {{ trans('email') }}
-                    <a href="?sort=email&order={{ session('l5cp-user-order') == 'desc' ? 'asc' : 'desc' }}"
+                    <a href="?sort=email&order={{ @$request->order == 'desc' ? 'asc' : 'desc' }}"
                        class="disabled">
-                        {{--<i class="fa fa-sort{{ session('l5cp-user-sort') == 'email' ? (Input::get('order', 'desc') == 'desc' ? '-alpha-asc' : '-alpha-desc') : '' }} pull-right"></i>--}}
+                        <i class="fa fa-sort{{ @$request->sort == 'email' ? (@$request->order == 'desc' ? '-alpha-asc' : '-alpha-desc') : '' }} pull-right"></i>
                     </a>
                 </th>
                 <th class="hidden-xs">
                     Status
-                    <a href="?sort=status&order={{ session('l5cp-user-order') == 'desc' ? 'asc' : 'desc' }}"
+                    <a href="?sort=status&order={{ @$request->order == 'desc' ? 'asc' : 'desc' }}"
                        class="disabled">
-                        {{--<i class="fa fa-sort{{ session('l5cp-user-sort') == 'status' ? (Input::get('order', 'desc') == 'desc' ? '-alpha-asc' : '-alpha-desc') : '' }} pull-right"></i>--}}
+                        <i class="fa fa-sort{{ @$request->sort == 'status' ? (@$request->order == 'desc' ? '-alpha-asc' : '-alpha-desc') : '' }} pull-right"></i>
                     </a>
                 </th>
                 <th class="hidden-xs">
                     Last Updated
-                    <a href="?sort=updated_at&order={{ session('l5cp-user-order') == 'desc' ? 'asc' : 'desc' }}"
+                    <a href="?sort=updated_at&order={{ @$request->order == 'desc' ? 'asc' : 'desc' }}"
                        class="disabled">
-                        {{--<i class="fa fa-sort{{ session('l5cp-user-sort') == 'updated_at' ? (Input::get('order', 'desc') == 'desc' ? '-alpha-asc' : '-alpha-desc') : '' }} pull-right"></i>--}}
+                        <i class="fa fa-sort{{ @$request->sort == 'updated_at' ? (@$request->order == 'desc' ? '-alpha-asc' : '-alpha-desc') : '' }} pull-right"></i>
                     </a>
                 </th>
                 <th class="hidden-xs">
                     Created At
-                    <a href="?sort=created_at&order={{ session('l5cp-user-order') == 'desc' ? 'asc' : 'desc' }}"
+                    <a href="?sort=created_at&order={{ @$request->order == 'desc' ? 'asc' : 'desc' }}"
                        class="disabled">
-                        {{--<i class="fa fa-sort{{ session('l5cp-user-sort') == 'created_at' ? (Input::get('order', 'desc') == 'desc' ? '-alpha-asc' : '-alpha-desc') : '' }} pull-right"></i>--}}
+                        <i class="fa fa-sort{{ @$request->sort == 'created_at' ? (@$request->order == 'desc' ? '-alpha-asc' : '-alpha-desc') : '' }} pull-right"></i>
                     </a>
                 </th>
                 <th class="col-md-2 col-sm-3 col-xs-5">{{ trans('control') }}</th>

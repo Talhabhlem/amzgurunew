@@ -1,4 +1,4 @@
-@extends('lcp::layouts.public')
+@extends('layouts.public')
 
 @section('body_classes')
     page-forgot-password layout-full

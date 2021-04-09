@@ -177,6 +177,7 @@
 @show
 <script type="text/javascript">
     var base_url = window.location.origin;
+    var thisTimeZone = 'America/Los_Angeles';
     console.log(base_url);
 </script>
 <!-- =============== VENDOR SCRIPTS ===============-->

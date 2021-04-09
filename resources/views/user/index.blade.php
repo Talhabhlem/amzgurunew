@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', trans_choice('l5cp-user::default.user', 2))
+@section('title', trans_choice('user', 2))
 @section('page-header')
     <div class="clearfix">
         <h1 class="page-title pull-left">Manage Users</h1>

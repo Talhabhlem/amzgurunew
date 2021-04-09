@@ -2,9 +2,9 @@
 
 @section('title')
 	@if (isset($user))
-		{{ trans('edit') }}  {{ trans_choice('l5cp-user::default.user', 1) }} {{ $user->name }}
+		{{ trans('edit') }}  {{ trans_choice('user', 1) }} {{ $user->name }}
 	@else
-		{{ trans('create') }} {{ trans_choice('l5cp-user::default.user', 1) }}
+		{{ trans('create') }} {{ trans_choice('user', 1) }}
 	@endif
 @stop
 @section('page-header')

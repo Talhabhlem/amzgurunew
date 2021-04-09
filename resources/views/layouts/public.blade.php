@@ -63,7 +63,7 @@
 </div>
 <!-- End Page -->
 <script type="text/javascript">
-    base_url = '{!! url() !!}';
+    var base_url = window.location.origin;
 </script>
 
 <script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
