@@ -29,7 +29,7 @@
             <div class="form-group">
                 <div class="input-group">
                     <input type="number" class="form-control" name="limit"
-                           value="{{ @$request->limit ? @$request->limit :15}}">
+                           value="{{ session('l5cp-user-limit') }}">
 
                     <div class="input-group-btn">
                         <button type="submit" class="btn btn-default">Limit</button>

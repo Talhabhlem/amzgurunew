@@ -29,9 +29,8 @@ class HomeController extends Controller
 //    }
     public function index(Request $request)
     {
-        $search = array();
-//        if($request->input('limit') || !session()->has('l5cp-user-limit'))
-//            session(['l5cp-user-limit' => $request->input('limit', 15)]);
+        if($request->input('limit') || !session()->has('l5cp-user-limit'))
+            session(['l5cp-user-limit' => $request->input('limit', 15)]);
 //
 //        if(null !== $request->input('q') || !session()->has('l5cp-user-search'))
 //            session(['l5cp-user-search' => $request->input('q', '')]);
@@ -46,8 +45,8 @@ class HomeController extends Controller
         $users = User::where('name', 'LIKE', '%'.$request->input('q', '').'%')
             ->orWhere('id', '=', $request->input('q', ''))
             ->orWhere('email', 'LIKE', '%'.$request->input('q', '').'%')
-            ->orderBy(session('l5cp-user-sort'), $request->input('order', 'desc'))
-            ->paginate($request->input('limit', 15));
+            ->orderBy($request->input('sort', 'name'), $request->input('order', 'desc'))
+            ->paginate(session('l5cp-user-limit'));
 
         return view('user.index',compact('request',$request))->withRoles(Role::all())->withUsers($users);
     }
